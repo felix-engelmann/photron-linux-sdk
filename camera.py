@@ -14,6 +14,12 @@ from starlette.requests import Request
 
 #expno = 145
 
+def nextseq(seq):
+    seq += 1
+    if seq == 2**16:
+        seq = 1
+    return seq
+
 class EchoServerProtocol(asyncio.DatagramProtocol):
     def connection_made(self, transport):
         self.transport = transport
@@ -33,15 +39,15 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
         pklen = 1400
         for i in range(0,len(imbuf), pklen):
             payload = imbuf[i:i+pklen]
-            self.sequence += 1
+            self.sequence = nextseq(self.sequence)
             self.subsequence += 1
             stream = 0x4453
             if i+pklen >= len(imbuf):
                 # last packet
                 stream = 0x4445
-                self.pending_acks.append((self.sequence + 1, self.subsequence + 1))
+                self.pending_acks.append((nextseq(self.sequence), self.subsequence + 1))
             elif self.subsequence%128 == 0:
-                self.pending_acks.append((self.sequence + 1, self.subsequence + 1))
+                self.pending_acks.append((nextseq(self.sequence), self.subsequence + 1))
             header = struct.pack(">IHHHH", self.sequence, stream, self.subsequence, len(payload), 0x0)
             self.transport.sendto(header+payload, (self.data_ip, self.data_port))
             print("sent", self.sequence, stream, self.subsequence, len(payload))
@@ -112,12 +118,12 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
             assert sub == 1
             self._send_ack(seq)
             print("received dialog query", seq, hex(stream), sub, length, payload.hex())
-            self.sequence += 1
+            self.sequence = nextseq(self.sequence)
             regquery = parse_query(payload)
             reply = create_response(*regquery, self.responses)
             resp = self._make_datagram(stream, 1, reply)
             print("sent reply", resp.hex())
-            self.pending_acks.append((self.sequence + 1, 1))
+            self.pending_acks.append((nextseq(self.sequence), 1))
 
             if payload == b'@\xb7\x00\x01\x00\x00\x00\x00\x00\x01\x00\x00':
                 self.impos = 0
@@ -133,7 +139,7 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
                 pklen = 1400
                 for i in range(128):
                     payload = self.imbuf[self.impos:self.impos+pklen]
-                    self.sequence += 1
+                    self.sequence = nextseq(self.sequence)
                     self.subsequence += 1
                     self.impos += pklen
                     stream = 0x4453
@@ -141,9 +147,9 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
                         # last packet
                         print("this is last packet")
                         stream = 0x4445
-                        self.pending_acks.append((self.sequence + 1, 1))
+                        self.pending_acks.append((nextseq(self.sequence), 1))
                     elif self.subsequence%128 == 0:
-                        self.pending_acks.append((self.sequence + 1, self.subsequence + 1))
+                        self.pending_acks.append((nextseq(self.sequence), self.subsequence + 1))
                     header = struct.pack(">IHHHH", self.sequence, stream, self.subsequence, len(payload), 0x0)
                     self.transport.sendto(header+payload, (self.data_ip, self.data_port))
                     print("sent", self.sequence, stream, self.subsequence, len(payload))
