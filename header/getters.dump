@@ -1,0 +1,284 @@
+PDC_GetDeviceCode
+Retrieves the device code.
+PDC_GetDeviceName
+Retrieves the device name.
+PDC_GetDeviceID
+Retrieves device ID.
+PDC_GetProductID
+Retrieves product ID.
+PDC_GetLotID
+Retrieves lot ID.
+PDC_GetIndividualID
+Retrieves individual ID.
+PDC_GetVersion
+Retrieves version number.
+Retrieves device connection status
+Function Name
+Description
+PDC_GetEthernetInfo
+This function retrieves the status of the ethernet function in the specified child device.
+PDC_GetMaxChildDeviceCount
+Retrieves the maximum number of child devices that can be connected simultaneously.
+PDC_GetChildDeviceCount
+Retrieves the number of connected child devices.
+PDC_GetCameraCommandBuadRate
+Retrieves a status of baudrate that can be set using for specified child device.
+Retrieves device running status
+Function Name
+Description
+PDC_GetStatus
+Retrieves operation status.
+PDC_GetCamMode
+Retrieves the camera operation conditions.
+PDC_GetMemory
+Retrieves the amount of PC memory for recording.
+PDC_GetMemoryInfo
+Retrieves the amount of PC memory for recording in bytes.
+Retrieves device recording status
+Function Name
+Description
+PDC_GetMaxBitDepth
+Retrieves the maximum bit depth.
+PDC_GetBitDepth
+This function retrieves the status of the recording bit depth function in the specified child device.
+PDC_GetRecordRate
+Retrieves the recording speed.
+PDC_GetHighSpeedMode
+Retrieves a status of maximam high speed mode or high quality mode of specified deviece.
+PDC_GetMaxFullResoRate
+Retrieves the maximum recording speed available at maximum resolution.
+PDC_GetMaxResolution
+Retrieves the maximum resolution.
+PDC_GetResolution
+Retrieves resolution.
+PDC_GetResolutionLockMode
+This function retrieves the status of resolution lock mode function in the specified child device.
+PDC_GetSegmentPosition
+Retrieves the upper-left coordinates in a segment rectangle.
+PDC_GetResolutionROI
+This function retrieves the status of resolution ROI function in the specified child device.
+PDC_GetShutterSpeedFps
+Retrieves the shutter speed in fractions of a second.
+PDC_GetShutterSpeedUsec
+Retrieves the shutter speed in microseconds.
+PDC_GetShutterSpeedNsec
+Retrieves the shutter speed in nanoseconds.
+PDC_GetStepShutter
+This function retrieves the status of step shutter speed function in the specified child device.
+PDC_GetShutterLockMode
+Retrieves the status of a shutter lock function.
+PDC_GetTriggerMode
+Retrieves the trigger mode.
+PDC_GetCurrentPartition
+Retrieves a current partition number.
+PDC_GetMaxFrames
+Gets the total number of frames in a current partition.
+PDC_GetMaxPartition
+Retrieves the maximum number of partition divisions and the maximum number of blocks.
+PDC_GetPartitionIncMode
+Retrieves the status of a partition increment function.
+PDC_GetVariableChannel
+Retrieves the channel number of the variable function currently in use.
+PDC_GetVariableChannelInfo
+Retrieves the channel information of the registered variable function.
+PDC_GetVariableRestriction
+Retrieves various restriction values for the variable function.
+PDC_GetVariableMaxWidth
+Retrieves the maximum width of the variable function when parameters are set.
+PDC_GetVariableMaxHeight
+Retrieves the maximum height of the variable function when parameters are set.
+PDC_GetVariableMaxRate
+Retrieves the minimum recording speed of the variable function when parameters are set.
+PDC_GetVariableMaxResolution
+Retrieves the maximum square resolution of the variable function when parameters are set.
+PDC_GetAutoExposure
+Retrieves the condition of the automatic exposure control function.
+PDC_GetAutoExposureInfo
+Retrieves the setting information of the automatic exposure control function.
+PDC_GetAutoExposureRestriction
+Retrieves various restriction values for the automatic exposure control function.
+PDC_GetLowLightMode
+Retrieves the condition of the low-light function.
+Retrieves device image setting status
+Function Name
+Description
+PDC_GetColorType
+Retrieves color/monochromatic information.
+PDC_GetColorTempMode
+Retrieves the color temperature state.
+PDC_GetColorTempBase
+Retrieves a reference value that can be used in setting the color temperature state.
+PDC_GetColorTempMode
+This function retrieves the status of color temperature modes that can be set in the specified child device.
+PDC_GetColorEnhanceMode
+Retrieves the status of a color enhance function.
+PDC_GetColorEnhanceValue
+Retrieves the coefficients set by the color enhance function.
+PDC_GetEdgeEnhanceMode
+Retrieves the status of the edge enhance function.
+PDC_GetSensorGainMode
+Retrieves the status of the sensor gain function.
+PDC_GetSensorGammaMode
+Retrieves the status of the sensor gamma function.
+PDC_GetDSShutterMode
+Retrieves the status of the dual slope shutter function.
+PDC_GetDSShutterValue
+This function retrieves the status of the dual slope shutter function in the specified child device.
+PDC_GetLUTMode
+Retrieves the status of the pre-LUT function.
+PDC_GetLUTParams
+Retrieves the parameters of pre-LUT.
+PDC_GetShadingMode
+Retrieves the status of the shading function.
+PDC_GetShadingType
+Retrieves correction method for shading function.
+PDC_GetPixelGainMode
+Retrieves the status of the pixel gain function.
+PDC_GetBlackClipLevel
+Retrieves status of digital black level clamping function.
+Retrieves device signal input/output status
+Function Name
+Description
+PDC_GetExternalCount
+Retrieves the number of external input/output ports.
+PDC_GetExternalInMode
+Retrieves input signal settings.
+PDC_GetExternalOutMode
+Retrieves output signal settings.
+PDC_GetDelay
+Retrieves the delay value of an input/output signal.
+PDC_GetDelayLimit
+Retrieves the upper-limit setting value of an input/output signal.
+PDC_GetIRIG
+Retrieves the IRIG signal input settings.
+PDC_GetIRIGOffset
+Retrieves the offset value of the IRIG signal input.
+PDC_GetIRIGPhaseLock
+This function retrieves the status of the IRIG phase lock function in the specified device.
+PDC_GetIRIGPhaseLockStatus
+This function retrieves the status of the IRIG phase lock mode in the specified device.
+PDC_GetMCDL
+Retrieves the MCDL function settings.
+PDC_GetVideoOutMode
+Retrieves the status of a video output format.
+PDC_GetVideoOutSignal
+Retrieves the status of a video output signal.
+PDC_GetVideoOutHDSDI
+This function retrieves the status of the HD-SDI video out modes that can be set in the specified child device.
+PDC_GetSyncOutTimes
+This function retrieves the list of the SYNC OUT magnification rates that can be set in the specified device.
+PDC_GetSyncPriority
+This function retrieves the status of the SYNC OUT priorities (master/slave) that can be set in the specified child device.
+PDC_GetSelfSyncMode
+Retrieves the status of self-sync mode.
+Retrieves device general status
+Function Name
+Description
+PDC_GetTransferOption
+Retrieves the image data transfer option conditions set.
+PDC_GetBurstTransfer
+Retrieves the status of the burst transfer function in the specified device.
+PDC_GetReadAheadTransfer
+Retrieves the status of the pre-loading parallel transfer function of a specified device.
+PDC_GetInstructionSet
+Retrieves instruction command set status of specified device.
+PDC_GetRecordingType
+This function retrieves the status of hardware recording function in the specified child device.
+PDC_GetBayerAlignment
+This function retrieves the status of bayer alignment of the specified device.
+PDC_GetAutoPlay
+Retrieves the status of autoplay for the specified device.
+PDC_GetFactoryDefaults
+This function retrieves the status of the factory default function in the specified child device.
+PDC_GetStorePreset
+Retrieves the preset channel number in the specified device.
+PDC_GetStoreNum
+Retrieves the number of preset channels in the specified device.
+PDC_GetDownloadMode
+Retrieves the status of the video output function during memory transfer.
+PDC_GetProgSwitchMode
+Retrieves the condition of functions assigned using the device's programmable switch.
+PDC_GetKeyPadLock
+Retrieves the locked status of a remote control keypad.
+PDC_GetHeadExchange
+Retrieves a head exchange number.
+PDC_GetHeadTypeName
+Retrieves a head type name of specified child deviece.
+PDC_GetLEDMode
+This function retrieves the status of LED mode in the specified device.
+PDC_GetPolarizerConfig
+Retrieves setting for polarizer alignment.
+PDC_GetMemoryModePartition
+Retrieves partition number for memory playback mode.
+PDC_GetLensControl
+Retrieves lens control type.
+PDC_GetFanState
+Retrieves the status of fans.
+PDC_GetAccelerationSensorError
+Retrieves the acceleration sensor error
+PDC_GetAccelerationTrigger
+Retrieves the setting whether to apply trigger using acceleration sensor and the acceleration value
+PDC_GetAccelerationTriggerTime
+Retrieves the acceleration trigger duration
+PDC_GetAccelerationTriggerTimeLimit
+Retrieves the acceleration trigger duration limit value
+PDC_GetAutoExposureLimit
+Retrieves restrictions of auto exposure operation
+PDC_GetAutoPowerWhenSupply
+Retrieves auto power on control setting with power supply.
+PDC_GetBatteryInfo
+Retrieves battery information.
+PDC_GetConnectedEthernetInfo
+Retrieves the connecting Ethernet information.
+PDC_GetFanRecReadyStop
+Retrieving the Stop fan while waiting trigger and recording function
+PDC_GetLensInfo
+Information of attached lens
+PDC_GetLensParam
+Retrieving the lens information
+PDC_GetLowLightMode2
+Retrieving the low light mode 2
+PDC_GetMaxRandomEndlessTriggerCount
+Retrieves maximum trigger counts in random center / random manual trigger mode.
+PDC_GetMaxRandomTriggerCount
+Retrieves Max Limit times
+PDC_GetMemoryShare
+Retrieving status of memory sharing function
+PDC_GetSerialNumber
+Retrieving the serial number
+PDC_GetShutdownBatterySupply
+Retrieves whether to perform auto power off while power is supplied from battery and the time to power off.
+PDC_GetShutdownBatterySupplyRange
+Retrieves the settable time to auto power off while power is supplied from battery.
+PDC_GetShutterSpeedPrecision
+Number of valid digits smaller than microsecond of shutter speed
+PDC_GetStorePresetReboot
+Retrieves whether a camera requires restarting after changing the preset.
+PDC_GetTriggerNoiseFilter
+Retrieving the status of trigger noise filter function
+PDC_GetTriggerNoiseFilterWidth
+Retrieving trigger width for trigger noise filter function
+PDC_GetVDAIOType
+Retrieving VDA IO type
+PDC_GetVideoOSDCrosshairMode
+Retrieves the setting of the cross cursor on video OSD (Enabled/Disabled).
+PDC_GetVideoOutSignalEnable
+Retrieves the status whether to output video out signal.
+PDC_GetWiFiScanCount
+Retrieves the number of WiFi access points found after searching access points.
+PDC_GetWiFiScanInfoA
+Retrieves specified access point information.
+PDC_GetWiFiScanInfoW
+Retrieves specified access point information.
+PDC_GetCameraHeadType
+Retrieves camera head type.
+PDC_GetHeadPortNumber
+Retrieves port number of connected camera head.
+PDC_GetLinkSpeed
+Retrieves link speed.
+PDC_GetPacketIntervalMode
+Retrieves packet interval mode.
+PDC_GetEthernetSpeedLimit
+Retrieves the communication speed limit for the Ethernet module.
+PDC_GetCommunicationParameter
+Retrieves interface details.

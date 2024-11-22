@@ -1,0 +1,82 @@
+PDC_GetExistChildDeviceList
+Retrieves a list of valid child devices.
+PDC_GetOpenedDeviceList
+Retrieves an opened device list.
+PDC_GetRecordRateList
+Retrieves a recording speed list.
+PDC_GetResolutionList
+Retrieves a resolution list.
+PDC_GetShutterSpeedFpsList
+Retrieves a shutter speed list.
+PDC_GetShutterSpeedUsecList
+Retrieves a shutter speed list in microseconds.
+PDC_GetShutterSpeedNsecList
+Retrieves a shutter speed list in nanoseconds.
+PDC_GetTriggerModeList
+Retrieves a trigger mode list.
+PDC_GetColorTempModeList
+Retrieves a color temperature mode list.
+PDC_GetVideoOutModeList
+Retrieves a video output mode list.
+PDC_GetVideoOutSignalList
+This function retrieves the list of the video out signal modes that can be set in the specified child device.
+PDC_GetVideoOutHDSDIList
+This function retrieves the list of the HD-SDI video out modes that can be set in the specified child device.
+PDC_GetExternalInModeList
+Retrieves an external input signal list.
+PDC_GetExternalOutModeList
+Retrieves an external output signal list.
+PDC_GetSensorGainModeList
+Retrieves a sensor gain list.
+PDC_GetSensorGammaModeList
+Retrieves a sensor gamma list.
+PDC_GetPartitionList
+Retrieves a partition list.
+PDC_GetDSShutterModeList
+Retrieves a dual slope shutter mode list.
+PDC_GetLUTModeList
+Retrieves a pre-LUT mode list.
+PDC_GetLUTOrgValueList
+Retrieves the table values of currently applied pre-LUT.
+PDC_GetLUTValueList
+Retrieves the table values of currently applied pre-LUT corrected for color temperature.
+PDC_GetShadingModeList
+Retrieves a shading mode list.
+PDC_GetShadingTypeList
+Retrieves list of shading correction methods.
+PDC_GetPixelGainModeList
+Retrieves a pixel gain mode list.
+PDC_GetEdgeEnhanceModeList
+Retrieves an edge enhance mode list.
+PDC_GetColorEnhanceModeList
+Retrieves a color enhance mode list.
+PDC_GetDownloadModeList
+Retrieves a list of the video output modes that can be set using for specified child device.
+PDC_GetVariableRecordRateList
+Retrieves the list of recording speeds from a variable function.
+PDC_GetAEShutterFpsList
+Retrieves the list of maximum exposure durations that can be set using the automatic exposure control function.
+PDC_GetAEShutterUsecList
+Retrieves a list of maximum exposure durations in microSec unit that can be set using the automatic exposure control function.
+PDC_GetAEShutterNsecList
+Retrieves a list of maximum exposure durations in nanoSec unit that can be set using the automatic exposure control function.
+PDC_GetProgSwitchModeList
+Retrieves the list of functions that can be assigned by the programmable switch on a device.
+PDC_GetSyncOutTimesList
+This function retrieves the list of the SYNC OUT magnification rates that can be set in the specified child device.
+PDC_GetCameraCommandBaudRateList
+Retrieves a list of baudrate that can be set using for specified child device.
+PDC_GetHeadExchangeList
+This function retrieves the list of camera heads that can be set in the specified child device.
+PDC_GetSyncPriorityList
+This function retrieves the list of the SYNC OUT priorities (master/slave) that can be set in the specified child device.
+PDC_GetDropFrameList
+Retrieves a list of dropped frames.
+PDC_GetBlackClipLevelList
+Retrieves list of set values for digital black level clamping.
+PDC_GetRecordingTypeList
+Retrieves list of set values for hardware recording types.
+PDC_GetPartitionIncModeList
+This function retrieves a list of modes for partition increment function that can be set on specified device.
+PDC_GetTemperatureTypeList
+Retrieving available temperature list
