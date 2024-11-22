@@ -20,7 +20,7 @@ b"\x20\x2a\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
 b"\x20\x2a\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00",
 b"\x00\x44\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
 b"\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
-b"\x20\xc2\x00\x00\x00\x24\x02\x20\x00\x12\x35\x48", #b"datetime",
+b"\x20\xc2\x00\x00\x00\x24\x03\x11\x00\x10\x38\x06",
 b"\x00\x14\x00\x00\xf0\x00\x00\x00\x00\x00\x00\x00",
 b"\x00\x14\x00\x00\xf0\x00\x00\x00\x00\x00\x00\x00",
 b"\x00\x14\x00\x00\xf1\x00\x00\x00\x00\x00\x00\x00",
@@ -152,7 +152,7 @@ b"\x00\x2b\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
 b"\x01\x2d\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
 b"\x01\x2e\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
 b"\x21\x2e\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
-b"\x40\xb7\x00\x01\x00\x00\x00\x00\x00\x01\x00\x00",]
+b"\x40\xb7\x00\x01\x00\x00\x00\x00\x00\x01\x00\x00"]
 
 def ip_to_bytes(ip):
     return struct.pack(">BBBB", *map(int,ip.split(".")))
@@ -210,6 +210,8 @@ class PhotronProtocol:
         self.transport = None
         self.pending_acks = []
         self.sequence = 0
+        self.image_buffer=b''
+        self.done = False
 
     def connection_made(self, transport):
         self.transport = transport
@@ -228,6 +230,12 @@ class PhotronProtocol:
         self.pending_acks.append((self.sequence, 0))
         self.transport.sendto(message)
 
+        init_payload = b"\x00\x00\x05\xb2"+ansp+ b"\x00\x05\x00\x00\x00\x64\x00\x80\x00\x00\x00\x01" # 22 long
+        message = _make_datagram(stream=0x4345, seq=self.sequence, sub=1, payload=init_payload) # send also with seq 0
+        print("open device", message)
+        self.pending_acks.append((self.sequence+1, 0))
+        self.transport.sendto(message)
+
         self.sequence = nextseq(self.sequence)
 
     def send_dialog(self, msg):
@@ -237,10 +245,16 @@ class PhotronProtocol:
         self.transport.sendto(message)
         self.sequence = nextseq(self.sequence)
 
-    def _send_ack(self, seq, payload=b''):
+    def _send_ack(self, seq, sub=0, payload=b''):
         print("acking", seq+1, payload.hex(), type(payload))
-        header = struct.pack(">IHHHH", seq+1, 0x5252, 1, len(payload), 0x0)
+        header = struct.pack(">IHHHH", seq+1, 0x5252, sub+1, len(payload), 0x0)
         self.transport.sendto(header+payload)
+
+    def send_close(self):
+        print("closing")
+        header = struct.pack(">IHHHH", 0, 0x4f45, 1, 0, 0x0)
+        self.pending_acks.append((0, 0))
+        self.transport.sendto(header)
 
     def datagram_received(self, data, addr):
         if len(data) < 12:
@@ -253,15 +267,35 @@ class PhotronProtocol:
             print("========remainder not zero", data[12 + length:].hex())
             self.transport.close()
 
-        print("Received:", seq, hex(stream), sub, length, hex(flag), payload.hex())
+        print("Received:", seq, hex(stream), sub, length, hex(flag), payload.hex()[:100])
 
         if stream == 0x5252 and (seq, sub) in self.pending_acks:
             self.pending_acks.remove((seq, sub))
             print("got ack with flag", hex(flag))
+            if seq == 0 and sub == 0 and self.done:
+                print("closing transport")
+                self.transport.close()
 
-        elif stream == 0x4445:
+
+        elif stream == 0x4445 and sub == 1:
             print("got dialog answer", payload.hex())
             self._send_ack(seq)
+
+        elif stream == 0x4445:
+            print("got final image part", payload.hex())
+            self.image_buffer += payload
+            print("got ", len(self.image_buffer), "bytes")
+            self._send_ack(seq)
+            self.done = True
+
+        elif stream == 0x4453:
+            print("got image buffer with subseq", sub)
+            if sub == 1:
+                self.image_buffer = b''
+            self.image_buffer += payload
+            if sub%128 == 0:
+                self._send_ack(seq, sub)
+
 
 
     def error_received(self, exc):
@@ -294,8 +328,8 @@ async def main():
 
     transport, protocol = await loop.create_datagram_endpoint(
         lambda: DiscoverProtocol(on_con_lost),
-        remote_addr=('127.0.0.1', 2000))
-        #remote_addr=('192.168.2.63', 2000))
+        #remote_addr=('127.0.0.1', 2000))
+        remote_addr=('192.168.2.63', 2000))
 
     try:
         await on_con_lost
@@ -307,13 +341,20 @@ async def main():
 
     transport, protocol = await loop.create_datagram_endpoint(
         lambda: PhotronProtocol(on_con_lost),
-        remote_addr=('127.0.0.1', 2000))
-        #remote_addr=('192.168.2.63', 2000))
+        #remote_addr=('127.0.0.1', 2000))
+        remote_addr=('192.168.2.63', 2000))
 
     for msg in queries:
         protocol.send_dialog(msg)
-        await asyncio.sleep(0.01)
+        await asyncio.sleep(0.05)
 
+    retries = 0
+    while protocol.done == False and retries < 10:
+        print("not yet done")
+        await asyncio.sleep(0.5)
+        retries += 1
+
+    protocol.send_close()
     try:
         await on_con_lost
     finally:

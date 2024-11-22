@@ -4,11 +4,15 @@ import struct
 import time
 from asyncio import DatagramTransport
 from asyncio.trsock import TransportSocket
-from typing import Tuple, Optional
+from contextlib import asynccontextmanager
+from typing import Tuple, Optional, AsyncGenerator
 
 from statemachine import StateMachine, State
 
 from dialog import queries
+
+from fastapi import FastAPI, Response, responses, status
+
 
 def ip_to_bytes(ip):
     return struct.pack(">BBBB", *map(int,ip.split(".")))
@@ -234,7 +238,9 @@ class PhotronMachine(StateMachine):
         self.result.set_result(payload)
         self._send_ack(seq)
 
-    def on_data(self, seq, sub, payload):
+    def on_data(self, seq, sub, payload, source, target):
+        if source == self.open:
+            self.buffer = b''
         self.buffer += payload
         if sub % 128 == 0:
             print("send partial ack")
@@ -247,16 +253,45 @@ class PhotronMachine(StateMachine):
         if self.image_ready:
             self.image_ready.set_result(self.buffer)
 
-async def _examples():
+global last_image
+last_image = b""
+stop = False
+async def live_view():
+    loop = asyncio.get_running_loop()
+    while not stop:
+        is_image = loop.create_future()
+        state_machine.image_ready = is_image
+
+        result = loop.create_future()
+        state_machine.query(b"\x40\xb7\x00\x01\x00\x00\x00\x00\x00\x01\x00\x00", result)
+        res = await result
+        print(res)
+
+        img = await is_image
+        print("image acquired", len(img))
+        hexed = img.hex()
+        clean = []
+        for i in range(0, len(hexed), 3):
+            val = int(hexed[i:i + 3], 16)
+            clean.append(val)
+
+        msbs = [b.to_bytes(2, 'big') for b in clean]
+        global last_image
+        last_image = b"".join(msbs)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    # Load the ML model
+
     loop = asyncio.get_running_loop()
 
     ip = '192.168.2.63'
-    ip = '127.0.0.1'
+    #ip = '127.0.0.1'
     on_con_lost = loop.create_future()
     transport, protocol = await loop.create_datagram_endpoint(
         lambda: DiscoverProtocol(on_con_lost),
-         remote_addr=(ip, 2000))
-        #remote_addr=('192.168.2.63', 2000))
+        remote_addr=(ip, 2000))
+    # remote_addr=('192.168.2.63', 2000))
 
     try:
         await on_con_lost
@@ -264,10 +299,9 @@ async def _examples():
         transport.close()
         pass
 
-
     is_open = loop.create_future()
 
-
+    global state_machine
     state_machine = PhotronMachine(is_open)
     print(state_machine)
 
@@ -298,18 +332,20 @@ async def _examples():
     img = await is_image
     print("image acquired", len(img))
 
-    is_image = loop.create_future()
-    state_machine.image_ready = is_image
+    #result = loop.create_future()
+    #state_machine.query(b"\x20\x20\x00\x00\x00\x0f\x42\x40\x00\x00\x00\x00", result)
+    #state_machine.query(b"\x20\x20\x00\x00\x00\x00\x75\x30\x00\x00\x00\x00", result)
+    #res = await result
+    #print("set new rate", res)
 
-    result = loop.create_future()
-    state_machine.query(b"\x40\xb7\x00\x01\x00\x00\x00\x00\x00\x01\x00\x00", result)
-    res = await result
-    print(res)
+    live_task = asyncio.create_task(live_view())
 
-    img = await is_image
-    print("image acquired", len(img))
+    yield
 
+    global stop
+    stop = True
 
+    await live_task
 
     print("now we are open, close it")
     await asyncio.sleep(1)
@@ -318,6 +354,21 @@ async def _examples():
     state_machine.close(is_closed)
 
     await is_closed
+    # Clean up the ML models and release the resources
 
 
-asyncio.run(_examples())
+app = FastAPI(lifespan=lifespan)
+
+@app.get("/v1/last_image")
+async def read_img():
+
+    data = last_image
+    return Response(content=data, headers={'shape': "(1024,1024)",# "(512,1024)",
+                                           'type': "uint16",
+                                           'compression': 'none'},
+                    media_type="image/x.detector+numpy")
+
+
+@app.get("/v1/roi")
+async def get_roi():
+    return {"roi": None}
