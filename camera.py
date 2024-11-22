@@ -28,9 +28,10 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
         self.subsequence = 0
         self.pending_acks = []
         self.packed_camip = struct.pack(">IBBBB", 0x83, 192,168,2,220)
-        self.imbuf = b'\x00'*int(1024*1024*1.5)
+        self.imbuf = b'\x00'*int(1024*1024*1.5) # *5000 #
         self.impos = None
         self.responses = {}
+        self.fh=None
 
     async def _send_frame(self):
         print("backougnd sending frame")
@@ -70,6 +71,8 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
         seq, stream, sub, length, flag = struct.unpack(">IHHHH", data[:12])
         payload = data[12:12 + length]
         print("flag is", hex(flag))
+        if self.fh is not None:
+            self.fh.write(f"{addr},{seq},{stream},{sub},{length},{flag},{payload.hex()}\n")
         if data[12 + length:] != b'\0' * len(data[12 + length:]):
             print("========remainder not zero", data[12 + length:].hex())
             return
@@ -93,6 +96,9 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
             self.subsequence = 0
             self.pending_acks = []
             self.impos = None
+            if self.fh is not None:
+                self.fh.close()
+            self.fh = open(f"flags_{time.time()}", "w")
 
             global expno
             #expno += 1
@@ -152,6 +158,7 @@ class EchoServerProtocol(asyncio.DatagramProtocol):
                         self.pending_acks.append((nextseq(self.sequence), self.subsequence + 1))
                     header = struct.pack(">IHHHH", self.sequence, stream, self.subsequence, len(payload), 0x0)
                     self.transport.sendto(header+payload, (self.data_ip, self.data_port))
+                    #time.sleep(0.001)
                     print("sent", self.sequence, stream, self.subsequence, len(payload))
                     if stream == 0x4445:
                         print("sendimg done")
