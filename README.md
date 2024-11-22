@@ -1,16 +1,17 @@
 # Photron Highspeed Camera Linux Development
 
 > [!WARNING]  
-> ANY CONTENT IN THIS REPOSITORY CAN DAMAGE YOUR CAMERA!!!
+> ANY CONTENT IN THIS REPOSITORY CAN DAMAGE YOUR CAMERA!
 > 
-> USE AT YOUR WON RISK!
+> USE AT YOUR OWN RISK!
 
 
 
 The repo captures the work in progress state of understanding the communication protocol between a Photron FASTCAM NOVA S12 and the provided Windows sdk https://photron.com/pfv/ with the goal to write a linux sdk.
+
 It is mostly a brain dump and short description what has been done and not a working software.
 It should be a good starting point for further study.
-We manged to receive a live image on linux, but so far did not manage to set individual parameters, but only replay what was set by the windows sdk.
+We manged to receive a live image on linux, but so far did not manage to set individual parameters, but only replay what was set by the Windows sdk.
 
 ![](data/viewer-image.jpeg)
 
