@@ -1,0 +1,104 @@
+Hello World! from C
+init error code 1, ret val 1check auto
+ip in numberc 0xc0a87dc8
+found 1 devices device code 39
+burst supported
+sleep 1s
+PDC_GetRecordRateList LIST:2 ;5 ;10 ;30 ;50 ;60 ;125 ;250 ;500 ;750 ;1000 ;2000 ;3000 ;4000 ;5000 ;6000 ;7200 ;8000 ;9000 ;10000 ;12500 ;15000 ;16000 ;18000 ;19200 ;20000 ;25000 ;30000 ;36000 ;40000 ;45000 ;48000 ;50000 ;60000 ;66000 ;75000 ;82500 ;90000 ;100000 ;120000 ;144000 ;150000 ;165000 ;180000 ;200000 ;220000 ;240000 ;264000 ;300000 ;396000 ;412500 ;480000 ;550000 ;600000 ;660000 ;720000 ;825000 ;900000 ;1100000 ;
+PDC_GetResolutionList LIST:67109888 ;67109776 ;67109712 ;67109632 ;67109504 ;67109376 ;58721152 ;50332416 ;50332320 ;50332208 ;50332144 ;41943680 ;41943552 ;41943520 ;33554944 ;33554880 ;33554816 ;33554768 ;33554736 ;33554688 ;25166208 ;25166160 ;25166080 ;25166064 ;16777472 ;16777456 ;16777424 ;16777376 ;16777344 ;8388736 ;8388704 ;8388688 ;8388672 ;8388656 ;8388640 ;8388624 ;
+PDC_GetShutterSpeedFpsList LIST:16000 ;18000 ;20000 ;25000 ;30000 ;40000 ;50000 ;60000 ;70000 ;80000 ;90000 ;100000 ;150000 ;200000 ;250000 ;300000 ;400000 ;500000 ;600000 ;700000 ;800000 ;950000 ;1500000 ;2000000 ;3000000 ;4950000 ;
+PDC_GetShutterSpeedUsecList LIST:60 ;55 ;50 ;40 ;33 ;25 ;20 ;16 ;14 ;12 ;11 ;10 ;6 ;5 ;4 ;3 ;2 ;2 ;1 ;1 ;1 ;1 ;0 ;0 ;0 ;0 ;
+PDC_GetShutterSpeedNsecList LIST:60700 ;55600 ;50000 ;40000 ;33300 ;25000 ;20000 ;16700 ;14300 ;12500 ;11100 ;10000 ;6700 ;5000 ;4000 ;3300 ;2500 ;2000 ;1700 ;1400 ;1300 ;1100 ;700 ;500 ;300 ;200 ;
+PDC_GetTriggerModeList LIST:0 ;16777216 ;33554432 ;67108864 ;50331648 ;83886080 ;117440512 ;
+Failed to read PDC_GetSensorGainModeList: 0
+Failed to read PDC_GetSensorGammaModeList: 0
+PDC_GetColorTempModeList LIST:1 ;2 ;3 ;4 ;
+PDC_GetLUTModeList LIST:1 ;2 ;3 ;4 ;5 ;6 ;11 ;
+PDC_GetVariableRecordRateList LIST:60 ;125 ;250 ;500 ;750 ;1000 ;1500 ;1800 ;2000 ;2400 ;2500 ;3000 ;3300 ;3600 ;4000 ;4500 ;4800 ;5000 ;6000 ;6400 ;6600 ;7200 ;7500 ;8000 ;9000 ;9600 ;9900 ;10000 ;12000 ;13200 ;14400 ;15000 ;16000 ;16500 ;17600 ;18000 ;19200 ;19800 ;20000 ;22000 ;22500 ;24000 ;25000 ;26400 ;27500 ;28800 ;30000 ;32000 ;33000 ;35200 ;36000 ;37500 ;39600 ;40000 ;44000 ;45000 ;48000 ;49500 ;50000 ;52800 ;55000 ;57600 ;60000 ;66000 ;70400 ;72000 ;75000 ;79200 ;80000 ;82500 ;88000 ;90000 ;96000 ;99000 ;100000 ;105600 ;110000 ;112500 ;120000 ;132000 ;137500 ;144000 ;150000 ;158400 ;160000 ;165000 ;176000 ;180000 ;198000 ;200000 ;211200 ;220000 ;225000 ;240000 ;247500 ;264000 ;275000 ;288000 ;300000 ;316800 ;330000 ;352000 ;360000 ;396000 ;400000 ;412500 ;440000 ;450000 ;480000 ;495000 ;528000 ;550000 ;600000 ;633600 ;660000 ;720000 ;792000 ;800000 ;825000 ;880000 ;900000 ;990000 ;1056000 ;1100000 ;
+PDC_GetDSShutterModeList LIST:17 ;
+Failed to read PDC_GetVideoOutModeList: 0
+PDC_GetShadingModeList LIST:1 ;2 ;
+PDC_GetAEShutterFpsList LIST:16000 ;18000 ;20000 ;25000 ;30000 ;40000 ;50000 ;60000 ;70000 ;80000 ;90000 ;100000 ;150000 ;200000 ;250000 ;300000 ;400000 ;500000 ;600000 ;700000 ;800000 ;950000 ;1500000 ;2000000 ;3000000 ;4950000 ;
+PDC_GetAEShutterUsecList LIST:60 ;55 ;50 ;40 ;33 ;25 ;20 ;16 ;14 ;12 ;11 ;10 ;6 ;5 ;4 ;3 ;2 ;2 ;1 ;1 ;1 ;1 ;0 ;0 ;0 ;0 ;
+PDC_GetAEShutterNsecList LIST:60700 ;55600 ;50000 ;40000 ;33300 ;25000 ;20000 ;16700 ;14300 ;12500 ;11100 ;10000 ;6700 ;5000 ;4000 ;3300 ;2500 ;2000 ;1700 ;1400 ;1300 ;1100 ;700 ;500 ;300 ;200 ;
+PDC_GetEdgeEnhanceModeList LIST:1 ;2 ;3 ;4 ;
+Failed to read PDC_GetSyncPriorityList: 0
+PDC_GetExistChildDeviceList LIST:1 ;
+PDC_GetOpenedDeviceList LIST:0 ;
+Failed to read PDC_GetProgSwitchModeList: 0
+PDC_GetPixelGainModeList LIST:0 ;1 ;2 ;3 ;6 ;7 ;
+PDC_GetSyncOutTimesList LIST:101 ;1 ;2 ;4 ;6 ;8 ;10 ;20 ;30 ;
+Failed to read PDC_GetColorEnhanceModeList: 0
+Failed to read PDC_GetHeadExchangeList: 0
+Failed to read PDC_GetCameraCommandBaudRateList: 0
+PDC_GetDownloadModeList LIST:0 ;2 ;
+Failed to read PDC_GetVideoOutSignalList: 0
+PDC_GetVideoOutHDSDIList LIST:3 ;5 ;
+Failed to read PDC_GetBlackClipLevelList: 0
+PDC_GetRecordingTypeList LIST:1 ;2 ;
+PDC_GetPartitionIncModeList LIST:0 ;2 ;
+PDC_GetDeviceCode ; pCode,39 ; pErrorCode,1
+PDC_GetDeviceID ; pID,200 ; pErrorCode,1
+PDC_GetVersion ; pVer,459271 ; pErrorCode,1
+PDC_GetColorType ; pMode,0 ; pErrorCode,1
+PDC_GetShutterLockMode ; pMode,0 ; pErrorCode,1
+PDC_GetResolutionLockMode ; pMode,0 ; pErrorCode,1
+PDC_GetPartitionIncMode ; pMode,0 ; pErrorCode,1
+PDC_GetChildDeviceCount ; pCount,1 ; pErrorCode,1
+PDC_GetMaxChildDeviceCount ; pCount,1 ; pErrorCode,1
+PDC_GetExternalCount ; pIn,4 ; pOut,2 ; pErrorCode,1
+PDC_GetIRIG ; pMode,0 ; pErrorCode,1
+PDC_GetIRIGOffset ; pValue,0 ; pErrorCode,1
+PDC_GetRecordRate ; pRate,16000 ; pErrorCode,1
+PDC_GetTriggerMode ; pMode,0 ; pAFrames,21821 ; pRFrames,0 ; pRCount,0 ; pErrorCode,1
+PDC_GetResolution ; pWidth,1024 ; pHeight,1024 ; pErrorCode,1
+PDC_GetShutterSpeedFps ; pFps,16000 ; pErrorCode,1
+PDC_GetShutterSpeedUsec ; pUsec,60 ; pErrorCode,1
+PDC_GetShutterSpeedNsec ; pNsec,60700 ; pErrorCode,1
+PDC_GetMaxPartition ; pCount,128 ; pBlock,0 ; pErrorCode,1
+PDC_GetCurrentPartition ; pNo,1 ; pErrorCode,1
+PDC_GetAutoExposure ; pMode,0 ; pErrorCode,1
+PDC_GetLUTMode ; pMode,1 ; pErrorCode,1
+PDC_GetDSShutterMode ; pMode,17 ; pErrorCode,1
+PDC_GetDSShutterValue ; pValue,0 ; pErrorCode,1
+PDC_GetEdgeEnhanceMode ; pMode,2 ; pErrorCode,1
+Failed to read PDC_GetShadingTypeList: 0
+PDC_GetPixelGainMode ; pMode,1 ; pErrorCode,1
+PDC_GetMaxFrames ; pFrames,21821 ; pBlocks,0 ; pErrorCode,1
+PDC_GetMaxResolution ; pWidth,1024 ; pHeight,1024 ; pErrorCode,1
+PDC_GetSegmentPosition ; pXPos,0 ; pYPos,0 ; pErrorCode,1
+PDC_GetVariableChannel ; pChannel,0 ; pErrorCode,1
+PDC_GetAutoExposureInfo ; pWidth,128 ; pHeight,16 ; pXPos,0 ; pYPos,0 ; pValue,0 ; pRange,0 ; pLimit,0 ; pErrorCode,1
+PDC_GetMaxBitDepth ; pDepth,12 ; pErrorCode,1
+PDC_GetVariableRestriction ; pWidthStep,128 ; pHeightStep,16 ; pXPosStep,64 ; pYPosStep,8 ; pWidthMin,128 ; pHeightMin,16 ; pFreePos,0 ; pErrorCode,1
+PDC_GetDownloadMode ; pMode,2 ; pErrorCode,1
+PDC_GetCamMode ; pMode,0 ; pErrorCode,1
+PDC_GetMaxFullResoRate ; pRate,16000 ; pErrorCode,1
+PDC_GetLowLightMode ; pMode,0 ; pErrorCode,1
+PDC_GetAutoExposureRestriction ; pWidthStep,64 ; pHeightStep,16 ; pXPosStep,32 ; pYPosStep,8 ; pWidthMin,128 ; pHeightMin,16 ; pMaxValue,1023 ; pMaxRange,1023 ; pErrorCode,1
+PDC_GetSyncOutTimes ; pRatio,1 ; pErrorCode,1
+PDC_GetStoreNum ; pNum,1 ; pErrorCode,1
+PDC_GetIRIGPhaseLock ; pMode,0 ; pErrorCode,1
+PDC_GetIRIGPhaseLockStatus ; pMode,0 ; pErrorCode,1
+PDC_GetBurstTransfer ; pMode,1 ; pErrorCode,1
+PDC_GetBitDepth ; pDepth,12 ; pErrorCode,1
+PDC_GetVideoOutHDSDI ; pMode,3 ; pErrorCode,1
+PDC_GetRecordingType ; pMode,2 ; pErrorCode,1
+PDC_GetFactoryDefaults ; pMode,0 ; pErrorCode,1
+PDC_GetStorePreset ; pNo,1 ; pErrorCode,1
+PDC_GetStorePresetReboot ; pReboot,0 ; pErrorCode,1
+PDC_GetInstructionSet ; pInstSetCode,-2147483648 ; pErrorCode,1
+PDC_GetMemoryModePartition ; pNo,1 ; pErrorCode,1
+PDC_GetLensControl ; pType,3 ; pErrorCode,1
+PDC_GetTransferOption ; p8BitSel,4 ; pBayer,0 ; pInterleave,1 ; pErrorCode,1
+PDC_GetSelfSyncMode ; pMode,0 ; pErrorCode,1
+PDC_GetMaxRandomTriggerCount ; pMaxRandomCount,10 ; pErrorCode,1
+PDC_GetMaxRandomEndlessTriggerCount ; pMaxRandomCount,10 ; pErrorCode,1
+PDC_GetReadAheadTransfer ; pMode,0 ; pErrorCode,1
+PDC_GetLowLightMode2 ; pMode,0 ; pErrorCode,1
+PDC_GetFanRecReadyStop ; pFlag,0 ; pErrorCode,1
+PDC_GetTemperatureTypeList LIST:0 ;1 ;3 ;
+PDC_GetShutterSpeedPrecision ; pValue,1 ; pErrorCode,1
+PDC_GetLinkSpeed ; pLinkSpeed,0 ; pErrorCode,1
+PDC_GetEthernetSpeedLimit ; pParam,1 ; pErrorCode,1
+capture rate 16000
