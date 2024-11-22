@@ -29,7 +29,7 @@ This is the [fastapi app](simulator/camera.py) which is listening on UDP port 20
 
 It behaves correctly with sequence numbers and format of paramters and images.
 
-## Parameter dialogs
+## Parameter dialogs / Registers
 
 The hard part is to understand the parameter mapping from the function calls of the SDK to the binary values in the packets.
 
@@ -46,7 +46,7 @@ The [funcs.cpp](windows/funcs.cpp) is then included in the [testing.cpp](windows
 After opening the camera, it uses `test_all(dev);` to get the current parameters and print them to stdout.
 
 Using a [bat script](windows/loop.bat) we ran all getters and dumped the result to the camera fastapi. On every connection, the simulated camera returned slightly different values.
-The messages sent are in the same format as the `og_responses` in [dialog.py](simulator/dialog.py) together with the output of the windows script are available in the `dump` directory.
+The messages sent are in the same format as the `og_responses` in [dialog.py](simulator/dialog.py) together with the output of the windows script are available in the `dump` directory. Some preliminary processing is available in this [notebook](notebooks/registers.ipynb)
 
 A preliminary correlation between values and parameter setting started in this [notebook](notebooks/correlate.ipynb)
 
