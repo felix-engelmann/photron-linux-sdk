@@ -1,7 +1,10 @@
 # Photron Highspeed Camera Linux Development
 
-ANY CONTENT IN THIS REPOSITORY CAN DAMAGE YOUR CAMERA!!!
-USE AT YOUR WON RISK!
+> [!WARNING]  
+> ANY CONTENT IN THIS REPOSITORY CAN DAMAGE YOUR CAMERA!!!
+> 
+> USE AT YOUR WON RISK!
+
 
 
 The repo captures the work in progress state of understanding the communication protocol between a Photron FASTCAM NOVA S12 and the provided Windows sdk https://photron.com/pfv/ with the goal to write a linux sdk.
@@ -14,6 +17,14 @@ We manged to receive a live image on linux, but so far did not manage to set ind
 The only thing missing was the correct 12 bit packing.
 
 Feel free to contact me if you have questions or ideas to contribute.
+
+## Windows based interfaces
+
+There are a few existing tools to interface with the camera which use the PDC dll, but they only support windows.
+* For epics, there is an areaDetector: https://github.com/areaDetector/ADPhotron
+* A python wrapper for the dll: https://github.com/gliese3/PHI_photron_camera
+
+## Approach 
 
 The methodology was to first start with a small windows programm and the real camera and analyse the pcap files.
 
